@@ -1,265 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>M.R.H Help Center</title>
-
-  <!-- Font Awesome (icons) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M.R.H Help Line</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
   <style>
-    :root{
-      --pink:#ff4fa3;
-      --bg:#fff7fb;
-      --card:#fff;
-      --muted:#666;
-      --radius:14px;
-      --shadow: 0 6px 22px rgba(0,0,0,0.08);
+    body {
+      background: #f0f8ff;
+      font-family: "Noto Sans Bengali", sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
-
-    *{box-sizing:border-box;font-family: 'Segoe UI', Roboto, 'Noto Sans Bengali', system-ui, sans-serif}
-
-    body{
-      margin:0;
-      background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:100vh;
-      padding:24px;
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
     }
-
-    .help-wrap{
-      width:100%;
-      max-width:720px;
-      background:var(--card);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:28px;
-      border:1px solid rgba(0,0,0,0.03);
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: red; /* 🔴 হেডিংয়ের রঙ */
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      animation: slideIn 2s ease-out infinite alternate; /* ✨ অ্যানিমেশন */
     }
-
-    .head{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:8px;
+    @keyframes slideIn {
+      0% {
+        transform: translateX(-10px);
+      }
+      100% {
+        transform: translateX(10px);
+      }
     }
-
-    .logo{
-      width:56px;
-      height:56px;
-      border-radius:12px;
-      display:grid;
-      place-items:center;
-      font-weight:700;
-      font-size:20px;
-      color:white;
-      background:linear-gradient(135deg,var(--pink),#ff81c6);
-      box-shadow:0 6px 18px rgba(255,79,163,0.18);
+    .logo i {
+      color: red;
     }
-
-    h1{
-      margin:0;
-      font-size:20px;
-      line-height:1;
-    }
-
-    p.lead{
-      margin:8px 0 20px 0;
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .contacts{
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:14px;
-    }
-
-    @media (max-width:560px){
-      .contacts{grid-template-columns:1fr;}
-    }
-
-    .card{
-      padding:14px;
-      border-radius:12px;
-      background: linear-gradient(180deg,#fff,#fff);
-      border:1px solid rgba(0,0,0,0.04);
-      display:flex;
-      align-items:center;
-      gap:12px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
-    }
-
-    .info{
-      flex:1;
-      min-width:0;
-    }
-
-    .label{
-      font-size:13px;
-      color:var(--muted);
-      margin:0 0 6px 0;
-    }
-
-    .value{
-      font-weight:600;
-      font-size:15px;
-      word-break:break-all;
-      color:#222;
-      margin:0;
-    }
-
-    .actions{
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      background:transparent;
-      border-radius:10px;
-      border:1px solid rgba(0,0,0,0.06);
-      cursor:pointer;
-      text-decoration:none;
-      font-weight:600;
-      font-size:14px;
-      transition: transform .12s ease, box-shadow .12s ease;
-      color:var(--pink);
-      background:linear-gradient(90deg, rgba(255,79,163,0.06), rgba(255,129,198,0.03));
-    }
-
-    .btn:active{ transform:translateY(1px) }
-    .btn .fa{ font-size:16px; }
-
-    .btn-primary{
-      background:linear-gradient(90deg,var(--pink), #ff81c6);
-      color:white;
-      box-shadow: 0 8px 22px rgba(255,79,163,0.18);
+    .help-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      margin: 8px 0;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
       border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease;
     }
-
-    .btn-outline{
-      background:transparent;
-      border:1px solid rgba(255,79,163,0.14);
-      color:var(--pink);
+    .help-btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
     }
-
-    .note{
-      margin-top:18px;
-      padding:12px 14px;
-      border-radius:10px;
-      background: linear-gradient(180deg,#fff,#fff7fb);
-      border:1px dashed rgba(0,0,0,0.04);
-      color:var(--muted);
-      font-size:13px;
+    .whatsapp { background: #25D366; }
+    .call { background: #28a745; }
+    .email { background: #ff9800; }
+    .telegram { background: #0088cc; }
+    .facebook { background: #1877F2; }
+    .youtube { background: #FF0000; }
+    .tiktok { background: #000000; }
+    .livechat { background: #6f42c1; }
+    i {
+      font-size: 20px;
     }
-
-    .small{
-      display:block;
-      font-size:12px;
-      color:#999;
-      margin-top:6px;
+    @media (max-width: 480px) {
+      .help-btn {
+        font-size: 16px;
+        padding: 10px;
+      }
+      .logo {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 <body>
-
-  <div class="help-wrap" role="region" aria-label="M.R.H Help Center">
-    <div class="head">
-      <div class="logo">M.R.H</div>
-      <div>
-        <h1>M.R.H Help Center</h1>
-        <p class="lead">সহযোগিতা পেতে নিচের কোন একটি অপশনে ক্লিক করুন — আমরা দ্রুত ফিরতি যোগাযোগ করব।</p>
-      </div>
+  <div class="container">
+    <div class="logo">
+      <i class="fa-solid fa-headset"></i> M.R.H Help Line
     </div>
 
-    <div class="contacts">
-      <!-- Email -->
-      <div class="card">
-        <div class="info">
-          <p class="label">ইমেইল</p>
-          <p class="value" id="emailValue">mdriadhassan5050@gmail.com</p>
-          <span class="small">ইমেইলে যোগাযোগ করতে নিচের বাটনে ক্লিক করুন</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="mailto:mdriadhassan5050@gmail.com">
-            <i class="fa-solid fa-envelope"></i> হেল্প নিন
-          </a>
-        </div>
-      </div>
+    <a href="https://wa.me/8801864052852" target="_blank" class="help-btn whatsapp">
+      <i class="fab fa-whatsapp"></i> ওয়াটসঅ্যাপে হেল্প নিন
+    </a>
 
-      <!-- WhatsApp -->
-      <div class="card">
-        <div class="info">
-          <p class="label">WhatsApp</p>
-          <p class="value" id="whatsValue">01864052852</p>
-          <span class="small">WhatsApp চ্যাট খুলতে নিচের বাটনে ক্লিক করুন</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-outline" href="https://wa.me/8801864052852" target="_blank">
-            <i class="fa-brands fa-whatsapp"></i> হেল্প নিন
-          </a>
-          <a class="btn" href="tel:+8801864052852">
-            <i class="fa-solid fa-phone"></i> কল
-          </a>
-        </div>
-      </div>
+    <a href="tel:01864052852" class="help-btn call">
+      <i class="fa-solid fa-phone"></i> কল করে হেল্প নিন
+    </a>
 
-      <!-- Facebook -->
-      <div class="card">
-        <div class="info">
-          <p class="label">Facebook</p>
-          <p class="value">https://www.facebook.com/share/1AwXhA15eq/</p>
-          <span class="small">ফেসবুক প্রোফাইল/পেজ দেখতে নিচের বাটনে ক্লিক করুন</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://www.facebook.com/share/16EA6e831j/" target="_blank">
-            <i class="fa-brands fa-facebook-f"></i> হেল্প নিন
-          </a>
-        </div>
-      </div>
+    <a href="mailto:mdriadhassan5050@gmail.com" class="help-btn email">
+      <i class="fa-solid fa-envelope"></i> ইমেইল হেল্প নিন
+    </a>
 
-      <!-- YouTube -->
-      <div class="card">
-        <div class="info">
-          <p class="label">YouTube</p>
-          <p class="value">https://youtube.com/@mdriyadmediastastion</p>
-          <span class="small">চ্যানেল দেখতে নিচের বাটনে ক্লিক করুন</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-outline" href="https://youtube.com/@mdriyadmediastastion" target="_blank">
-            <i class="fa-brands fa-youtube"></i> হেল্প নিন
-          </a>
-        </div>
-      </div>
+    <a href="https://t.me/directorriadkhan" target="_blank" class="help-btn telegram">
+      <i class="fab fa-telegram"></i> টেলিগ্রামে হেল্প নিন
+    </a>
 
-      <!-- Live Chat -->
-      <div class="card">
-        <div class="info">
-          <p class="label">Live Chat</p>
-          <p class="value">লাইভ সাপোর্ট চ্যাট সিস্টেম</p>
-          <span class="small">চ্যাটে প্রবেশ করতে নিচের বাটনে ক্লিক করুন</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://mrhonlineauthority.github.io/mrhhelplinehome/livechat" target="_blank">
-            <i class="fa-solid fa-comments"></i> লাইভ চ্যাট
-          </a>
-        </div>
-      </div>
-    </div>
+    <a href="https://www.facebook.com/profile.php?id=100090985806717&mibextid=ZbWKwL" target="_blank" class="help-btn facebook">
+      <i class="fab fa-facebook"></i> ফেইজবুকে হেল্প নিন
+    </a>
 
-    <div class="note">
-      হেল্প নিতে উপরের বাটনগুলোর মধ্যে যে কোনটিতে ক্লিক করুন — ধন্যবাদ।<br>
-      <small class="small">নোট: WhatsApp লিঙ্কটি বিদেশে/অন্য ডিভাইসে কাজ করার জন্য wa.me ব্যবহার করা হয়েছে।</small>
-    </div>
+    <a href="https://tiktok.com/@derectorriadkhan" target="_blank" class="help-btn tiktok">
+      <i class="fab fa-tiktok"></i> টিকটকে হেল্প নিন
+    </a>
+
+    <a href="https://youtube.com/@mdriyadmediastastion?si=hwmD8-n1dVhu0__G" target="_blank" class="help-btn youtube">
+      <i class="fab fa-youtube"></i> ইউটিউবে হেল্প নিন
+    </a>
+
+    <a href="https://mrhonlineauthority.github.io/mrhhelplinehome/livechat" target="_blank" class="help-btn livechat">
+      <i class="fa-solid fa-comments"></i> লাইভ চ্যাট হেল্প নিন
+    </a>
   </div>
-
 </body>
 </html>
