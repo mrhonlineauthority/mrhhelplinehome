@@ -28,25 +28,19 @@
     .logo {
       font-size: 28px;
       font-weight: bold;
-      color: red; /* 🔴 হেডিংয়ের রঙ */
+      color: red;
       margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      animation: slideIn 2s ease-out infinite alternate; /* ✨ অ্যানিমেশন */
+      animation: slideIn 2s ease-out infinite alternate;
     }
     @keyframes slideIn {
-      0% {
-        transform: translateX(-10px);
-      }
-      100% {
-        transform: translateX(10px);
-      }
+      0% { transform: translateX(-10px); }
+      100% { transform: translateX(10px); }
     }
-    .logo i {
-      color: red;
-    }
+    .logo i { color: red; }
     .help-btn {
       display: flex;
       align-items: center;
@@ -75,17 +69,27 @@
     .youtube { background: #FF0000; }
     .tiktok { background: #000000; }
     .livechat { background: #6f42c1; }
-    i {
-      font-size: 20px;
+    i { font-size: 20px; }
+
+    /* নির্দেশনা বক্স */
+    .notice-box {
+      background: #ffe0e0;
+      color: #b30000;
+      border: 1px solid #ff4d4d;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 10px;
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.5;
     }
+
     @media (max-width: 480px) {
       .help-btn {
         font-size: 16px;
         padding: 10px;
       }
-      .logo {
-        font-size: 24px;
-      }
+      .logo { font-size: 24px; }
     }
   </style>
 </head>
@@ -95,11 +99,11 @@
       <i class="fa-solid fa-headset"></i> M.R.H Help Line
     </div>
 
-    <a href="https://wa.me/8801864052852" target="_blank" class="help-btn whatsapp">
+    <a href="https://wa.me/8801864052852" target="_blank" class="help-btn whatsapp restricted">
       <i class="fab fa-whatsapp"></i> ওয়াটসঅ্যাপে হেল্প নিন
     </a>
 
-    <a href="tel:01864052852" class="help-btn call">
+    <a href="tel:01864052852" class="help-btn call restricted">
       <i class="fa-solid fa-phone"></i> কল করে হেল্প নিন
     </a>
 
@@ -111,7 +115,7 @@
       <i class="fab fa-telegram"></i> টেলিগ্রামে হেল্প নিন
     </a>
 
-    <a href="https://www.facebook.com/profile.php?id=100090985806717&mibextid=ZbWKwL" target="_blank" class="help-btn facebook">
+    <a href="https://www.facebook.com/share/1cAAn7bzSY/" target="_blank" class="help-btn facebook">
       <i class="fab fa-facebook"></i> ফেইজবুকে হেল্প নিন
     </a>
 
@@ -123,9 +127,41 @@
       <i class="fab fa-youtube"></i> ইউটিউবে হেল্প নিন
     </a>
 
-    <a href="https://mrhonlineauthority.github.io/mrhhelplinehome/livechat" target="_blank" class="help-btn livechat">
+    <a href="https://mrhonlineauthority.github.io/mrhhelplinehome/livechat" target="_blank" class="help-btn livechat restricted">
       <i class="fa-solid fa-comments"></i> লাইভ চ্যাট হেল্প নিন
     </a>
+
+    <div class="notice-box">
+      📢 আমাদের সকল সেবা চালু থাকে প্রতিদিন সকাল <b>08:00am</b> থেকে রাত <b>10:00pm</b> পর্যন্ত।<br>
+      ❌ রাত 10:00pm থেকে সকাল 07:59am পর্যন্ত ওয়াটসঅ্যাপ, কল ও লাইভ চ্যাট বন্ধ থাকে!
+    </div>
   </div>
+
+  <script>
+    function checkServiceTime() {
+      const now = new Date();
+      const hour = now.getHours();
+      const minute = now.getMinutes();
+
+      // সময় সীমা নির্ধারণ
+      const startHour = 8;  // সকাল 08:00
+      const endHour = 22;   // রাত 10:00
+
+      // কোন বাটন বন্ধ থাকবে
+      const restrictedButtons = document.querySelectorAll('.restricted');
+
+      // সময় সীমার মধ্যে থাকলে বাটন চালু থাকবে, না হলে বন্ধ
+      restrictedButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+          if (hour < startHour || (hour === endHour && minute > 0) || hour > endHour) {
+            event.preventDefault();
+            alert('⏳ এই সেবা বন্ধ আছে!\n সকাল 08:00am থেকে রাত 10:00pm পর্যন্ত চালু থাকবে।');
+          }
+        });
+      });
+    }
+
+    checkServiceTime();
+  </script>
 </body>
 </html>
