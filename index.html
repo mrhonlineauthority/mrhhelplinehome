@@ -71,7 +71,6 @@
     .livechat { background: #6f42c1; }
     i { font-size: 20px; }
 
-    /* নির্দেশনা বক্স */
     .notice-box {
       background: #ffe0e0;
       color: #b30000;
@@ -127,9 +126,10 @@
       <i class="fab fa-youtube"></i> ইউটিউবে হেল্প নিন
     </a>
 
-    <a href="https://mrhonlineauthority.github.io/mrhhelplinehome/livechat" target="_blank" class="help-btn livechat restricted">
+    <!-- 🔹 এখন এই বাটনে ক্লিক করলে চ্যাট খুলবে -->
+    <button class="help-btn livechat restricted" id="liveChatBtn">
       <i class="fa-solid fa-comments"></i> লাইভ চ্যাট হেল্প নিন
-    </a>
+    </button>
 
     <div class="notice-box">
       📢 আমাদের সকল সেবা চালু থাকে প্রতিদিন সকাল <b>08:00am</b> থেকে রাত <b>10:00pm</b> পর্যন্ত।<br>
@@ -143,14 +143,11 @@
       const hour = now.getHours();
       const minute = now.getMinutes();
 
-      // সময় সীমা নির্ধারণ
-      const startHour = 8;  // সকাল 08:00
-      const endHour = 22;   // রাত 10:00
+      const startHour = 8;
+      const endHour = 22;
 
-      // কোন বাটন বন্ধ থাকবে
       const restrictedButtons = document.querySelectorAll('.restricted');
 
-      // সময় সীমার মধ্যে থাকলে বাটন চালু থাকবে, না হলে বন্ধ
       restrictedButtons.forEach(button => {
         button.addEventListener('click', function(event) {
           if (hour < startHour || (hour === endHour && minute > 0) || hour > endHour) {
@@ -162,6 +159,26 @@
     }
 
     checkServiceTime();
+
+    // 🔹 লাইভ চ্যাট বাটনে ক্লিক করলে চ্যাট খুলবে
+    document.getElementById('liveChatBtn').addEventListener('click', function() {
+      if (typeof Tawk_API !== "undefined") {
+        Tawk_API.maximize(); // চ্যাট উইন্ডো খুলবে
+      }
+    });
+  </script>
+
+  <!-- ✅ তোমার আসল Tawk.to স্ক্রিপ্ট -->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/691477aa038297195d561627/1j9rv6soc';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
   </script>
 </body>
 </html>
